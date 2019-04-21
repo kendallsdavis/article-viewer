@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 //-------------------------------------SET UP REQUIREMENTS, EXPRESS, HANDLEBARS, ROUTES---------------------------
 const express = require('express')
 const hbars = require('express-handlebars')
@@ -24,7 +26,7 @@ app.engine("handlebars", hbars({ defaultLayout: "main" }));
 // use the handlebar view engine
 app.set("view engine", "handlebars");
 // load the routes module into the app
-// app.use(require('./routes/routes')(db))
+app.use(require('./routes/routes')(db))
 
 require("./routes/routes")
 // ------------------------------SET UP CONNECTION TO MONGOSE NEWSSCRAPER DATABASE--------------------------------------------------
@@ -80,27 +82,25 @@ app.get("/all", (req, res) => {
   });
 });
 
-// ----------------------------SEND SCRAPE RESULTS TO PAGE---------------------------------------------------
-// // Loads results onto the page
-// function getResults() {
-//   // Empty any results currently on the page
-//   $("#results").empty();
-//   // Grab all of the current notes
-//   $.getJSON("/all", (data) => {
-//     // For each note...
-//     for (let i = 0; i < data.length; i++) {
-//       // ...populate #results with a p-tag that includes the note's title and object id
-//       $("#results").prepend("<p class='data-entry' data-id=" + data[i]._id + "><span class='dataTitle' data-id=" +
-//         data[i]._id + ">" + data[i].title + "</span><span class=delete>X</span></p>");
-//     }
-//   });
-// }
+// ----------------------------SEND SCRAPE RESULTS TO MAI PAGE---------------------------------------------------
+// Loads results onto the page
+function getResults() {
+  // Empty any results currently on the page
+  $("#article-view").empty();
+  // Grab all of the current notes
+  $.getJSON("/all", (data) => {
+    // For each article...
+    for (let i = 0; i < 10; i++) {
+      // ...populate #article-view with a p-tag that includes the article's title and object id
+      $("#article-view").prepend("<p class='data-entry' data-id=" + data[i]._id + "><span class='dataTitle' data-id=" +
+        data[i]._id + ">" + data[i].title + "</span><span class=delete>X</span></p>");
+    }
+  });
+}
 
-// getResults();
-
-
-
+getResults();
 // ---------------------- SET APP LISTENER -----------------------------------------------------
 app.listen(PORT, () => {
-  console.log(`Server listening on: http://localhost:${PORT}`);
+  console.log(`Server listening on: localhost:3000`);
 });
+});  
