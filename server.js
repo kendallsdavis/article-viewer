@@ -63,6 +63,40 @@ mongoose.connect("mongodb://localhost/newsScraper", { useNewUrlParser: true });
   })
 });
 
+// ------------------------------RETRIEVE RESULTS FROM MONGO AND RENDER ON /ALL-----------------------------------------------
+// Retrieve results from mongo
+app.get("/all", (req, res) => {
+  // Find all notes in the notes collection
+  db.Article.find({}, (error, found) => {
+    // Log any errors
+    if (error) {
+      console.log(error);
+    }
+    else {
+      // Otherwise, send json of the notes back to user
+      // This will fire off the success function of the ajax request
+      res.json(found);
+    }
+  });
+});
+
+// ----------------------------SEND SCRAPE RESULTS TO PAGE---------------------------------------------------
+// // Loads results onto the page
+// function getResults() {
+//   // Empty any results currently on the page
+//   $("#results").empty();
+//   // Grab all of the current notes
+//   $.getJSON("/all", (data) => {
+//     // For each note...
+//     for (let i = 0; i < data.length; i++) {
+//       // ...populate #results with a p-tag that includes the note's title and object id
+//       $("#results").prepend("<p class='data-entry' data-id=" + data[i]._id + "><span class='dataTitle' data-id=" +
+//         data[i]._id + ">" + data[i].title + "</span><span class=delete>X</span></p>");
+//     }
+//   });
+// }
+
+// getResults();
 
 
 
