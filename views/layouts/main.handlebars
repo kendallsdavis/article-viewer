@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Article Search</title>
+	<!-- css style sheet -->
+		<link rel="stylesheet" href="../../assets/style.css">
+	<!-- jQuery -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<!-- link to javascript code -->
+		<script src="/app.js"></script>
+		<script src="/public/js/scraper.js"></script>
+	</head>
+
+	<body>
+
+{{!-- Nav Bar --}}
+	<div class=row id="nav-bar">
+		<div class="col-md-3" id="buttons">
+			<button>Home</button>
+			<button>Saved Articles</button>
+			<button>Scrape New Articles</button>
+		</div>
+		<div class="col-md-9"</div>
+	</div>
+
+{{!-- Header Image --}}
+<div>
+	<h3>Web Scraper Article Search</h3>
+<img id="news-img" src="../../assets/images/search.png", height="300px" width="1600px">
+</div>
+
+{{!--Scraped Articles  --}}
+		{{{ body }}}
+
+
+	</body>
+</html>
+
